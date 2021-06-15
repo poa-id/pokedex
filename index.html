@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="search">
+        <input type="text" id="pokemonName" placeholder="Pokemon name" />
+        <button id="boton">Buscar</button>
+    </div>
+    <main id="pokedex">
+        <div>
+            <img src="img/placeholder.png" alt="pokemon image" id="sprite">
+        </div>
+        <span id="name"></span>
+    </main>
+    <script>
+        async function fetchData(e) {
+            if (e.key == "Enter" && e.target.value != "") {
+                let inputValue = document.getElementById("pokemonName").value.toLowerCase();
+                let data = await fetch(`https://pokeapi.co/api/v2/pokemon/${inputValue}`);
+                if (data.status == 200) {
+                    let json = await data.json();
+
+                    console.log(data);
+                    console.log(json);
+                    document.getElementById("name").innerText = json.name;
+                    document.getElementById("sprite").src = json.sprites.front_default;
+                    document.getElementById("pokemonName").value = "";
+                } else {
+                    document.getElementById("name").innerText = "Error";
+                    document.getElementById("sprite").src = 'img/placeholder.png';
+                    document.getElementById("pokemonName").value = "";
+                }
+            }
+        }
+        pokemonName.addEventListener("keypress", (e) => fetchData(e));
+    </script>
+</body>
+
+</html>
