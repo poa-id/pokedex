@@ -67,3 +67,31 @@ body {
       max-width: 120px;
       margin-left: 10px;
   }
+
+  @media (max-width: 768px) {
+      /*Mobile Users will see this*/
+      #search{
+          margin: auto;
+        }
+        #boton {
+            font-size: 0.9rem;
+            margin-top: 50px;
+            padding: 0;
+        }
+        #pokedex {
+            background-size: 110%;
+
+        }
+        #sprite {
+            margin-left: 55px;
+            max-width: 80px;
+            max-height: 80px;
+        }
+        #name {
+            left: 80px;
+            bottom: 30px;
+            font-size: 0.7rem;
+        }
+
+
+}
